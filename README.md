@@ -2,6 +2,16 @@
 
 ## Kom i gang ##
 
+Du trenger:
+
+*   Apache maven 3.x
+*   JDK 1.8
+*   En IDE
+
+Alle testene (JUnit og Jasmine) kjøres når applikasjonen bygges med Maven.
+
+Jasmine-testene kan også kjøres ved å åpne filen SpecRunner.html i en nettleser.
+
 ## Oppgave 1 ##
 
 En indisk guru har på oppdrag fra kunden gjennomført review av koden du forvalter. I rapporten han har levert, påpeker han at deler av koden er vanskelig å forstå.
