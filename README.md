@@ -53,6 +53,8 @@ CommentView.spec.js vil nå feile. En «hyperassertion» er en test som er så s
 
 Skriv om testen slik at den tester det som er vesentlig, for eksempel at det vises hvem som har kommentert og hvor lenge siden det ble kommentert.
 
+Hint: Du kan bruke jquery-selectoren :contains.
+
 ## Oppgave 6 ##
 
 En juniorutvikler i teamet ditt har misforstått hvordan objekter skal persisteres i databasen. Han trodde det var applikasjonskoden som hadde ansvar for å generere primærnøkler til objektene. Dette har ført til mye krøll i koden og i databasen, og han ber deg om hjelp.
