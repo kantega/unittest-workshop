@@ -6,7 +6,7 @@
 
 En indisk guru har på oppdrag fra kunden gjennomført review av koden du forvalter. I rapporten han har levert, påpeker han at deler av koden er vanskelig å forstå.
 
-Testklassen GrepTest lider av “primitive assertions”. Det vil si at den baserer seg på mer primitive elementer enn oppførselen den sjekker.
+Testklassen LogFilterTest lider av “primitive assertions”. Det vil si at den baserer seg på mer primitive elementer enn oppførselen den sjekker.
 
 Jo nærmere opp til naturlig språk man formulerer seg, jo lettere vil det være å forstå hva som skjer. Guruen anbefaler at du bruker metoden assertThat istedenfor assertTrue og at du bruker en Matcher fra utilityklassen CoreMatchers, for eksempel containsString.
 
@@ -37,7 +37,7 @@ Erstatt magiske numre med konstanter/variable slik at koden blir lettere å fors
 
 ## Oppgave 5 ##
 
-CommentView.js blander struktur og stilsetting. Erstatt bruken av <small> med en <span> med et css-element (bruk for eksempel den eksisterende class selector commentFooter).
+CommentView.js blander struktur og stilsetting. Erstatt bruken av small-tagen med en span-tag med et css-element (bruk for eksempel den eksisterende class selector commentFooter).
 
 CommentView.spec.js vil nå feile. En «hyperassertion» er en test som er så samvittighetsfull at den sjekker hver eneste detalj om oppførselsen til koden den tester. Enhver endring av koden kan føre til at testen feiler selv om endringen i dette tilfellet ikke endrer funksjonaliteten sett fra brukerens ståsted.
 
