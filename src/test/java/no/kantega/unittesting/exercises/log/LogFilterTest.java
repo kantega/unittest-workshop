@@ -34,9 +34,9 @@ public class LogFilterTest {
 
         //then
         String filteredLog = stringWriter.toString();
-        assertTrue(filteredLog.indexOf("ERROR ContextLoader") != -1);
-        assertTrue(filteredLog.indexOf("INFO  PushyWrapper") == -1);
-        assertTrue(filteredLog.indexOf("ERROR TaskUtils") != -1);
+        assertThat(filteredLog, containsString("ERROR ContextLoader"));
+        assertThat(filteredLog, not(containsString("INFO  PushyWrapper")));
+        assertThat(filteredLog, containsString("ERROR TaskUtils"));
 
 
     }
