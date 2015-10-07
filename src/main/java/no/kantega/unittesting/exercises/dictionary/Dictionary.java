@@ -9,7 +9,7 @@ public class Dictionary implements Iterable<Dictionary.Entry> {
     private Map<String, Object> entries = new HashMap<>();
 
     public void add(String key, Object value) {
-        // TODO: finish this :)
+        entries.put(key, value);
     }
 
     @Override

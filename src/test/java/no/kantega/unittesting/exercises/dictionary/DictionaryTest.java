@@ -2,7 +2,7 @@ package no.kantega.unittesting.exercises.dictionary;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * http://www.manning.com/EffectiveUnitTesting/
@@ -16,13 +16,18 @@ public class DictionaryTest {
         dictionary.add("A", 3L);
         dictionary.add("B", "21");
 
+        assertContains(dictionary, "A", 3L);
+        assertContains(dictionary, "B", "21");
+
+    }
+
+    private void assertContains(Dictionary dictionary, String key, Object value) {
         for (Dictionary.Entry entry : dictionary) {
-            if ("A".equals(entry.getKey())) {
-                assertEquals(3L, entry.getValue());
-            } else if ("B".equals(entry.getKey())) {
-                assertEquals("21", entry.getValue());
+            if (key.equals(entry.getKey())) {
+                assertEquals(value, entry.getValue());
+                return;
             }
         }
-
+        fail("Iterator didn't contain " + key + " => " + value);
     }
 }
