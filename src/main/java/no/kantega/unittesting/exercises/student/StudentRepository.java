@@ -65,4 +65,17 @@ public class StudentRepository {
         return new JdbcTemplate(dataSource).queryForObject("select count(*) from STUDENT", Long.class);
     }
 
+    public List<Student> findBySurName(String lastName) {
+        List<Student> result = new JdbcTemplate(dataSource).query("select ID, USER_NAME, SUR_NAME, GIVEN_NAME from STUDENT where SUR_NAME = ?", new Object[]{lastName}, (ResultSet rs, int rowNum) -> {
+            Student student = new Student();
+            student.setId(rs.getLong("ID"));
+            student.setUserName(rs.getString("USER_NAME"));
+            student.setSurName(rs.getString("SUR_NAME"));
+            student.setGivenName(rs.getString("GIVEN_NAME"));
+            return student;
+        });
+        return result;
+    }
+
+
 }

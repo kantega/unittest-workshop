@@ -5,6 +5,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.*;
 
 import java.sql.Connection;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -175,6 +176,54 @@ public class StudentRepositoryTest {
         //then
         assertThat(repository.find(existing.getId()), is(nullValue()));
     }
+
+    @Test
+    public void findBySurNameShallReturnEmptyListWhenNoMatchingNames() {
+
+        //given
+        String surname = "Nordmann";
+
+        //when
+        List<Student> students = repository.findBySurName(surname);
+
+        //then
+        assertThat(students.size(), is(0));
+    }
+
+    @Test
+    public void findBySurNameShallReturnStudentWithCorrectProperties() {
+
+        //given
+        Student existing = repository.insert(newInstance());
+
+        //when
+        List<Student> found = repository.findBySurName(existing.getSurName());
+
+        //then
+        assertEqualProperties(existing, found.get(0));
+
+    }
+
+    @Test
+    public void findBySurNameShallReturnAllStudentsWithMatchingSurName() {
+
+        //given
+        String surname = "Nordmann";
+        repository.insert(new Student("s1", "Ola", surname));
+        repository.insert(new Student("s2", "Olai", surname));
+        repository.insert(new Student("s3", "Ola", "Dunk"));
+
+        //when
+        List<Student> found = repository.findBySurName(surname);
+
+        //then
+        assertThat(found.size(), equalTo(2));
+        for (Student student : found) {
+            assertThat(student.getSurName(), equalTo(surname));
+        }
+
+    }
+
 
     private Student newInstance() {
         return new Student("oladun", "Ola", "Dunk");
