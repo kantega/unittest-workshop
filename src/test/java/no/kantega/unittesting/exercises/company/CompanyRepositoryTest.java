@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
+import static org.junit.Assert.fail;
+
 public class CompanyRepositoryTest {
 
     private BasicDataSource dataSource;
@@ -43,6 +45,7 @@ public class CompanyRepositoryTest {
 
             //when
             repository.insert(company);
+            fail();
 
         } catch (Exception e) {
             //expected

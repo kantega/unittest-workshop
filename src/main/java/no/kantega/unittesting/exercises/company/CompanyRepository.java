@@ -17,6 +17,11 @@ public class CompanyRepository {
     }
 
     public Company insert(final Company company) {
+
+        if (company.getId() != null) {
+            throw new RuntimeException("Cannot insert row with application provided id");
+        }
+
         final String sql = "insert into COMPANY (NAME) values (?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         new JdbcTemplate(dataSource).update(new PreparedStatementCreator() {
