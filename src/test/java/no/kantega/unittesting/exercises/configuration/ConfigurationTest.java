@@ -1,5 +1,6 @@
 package no.kantega.unittesting.exercises.configuration;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,27 +10,43 @@ import static org.junit.Assert.*;
  */
 public class ConfigurationTest {
 
+    private Configuration configuration;
+
+    @Before
+    public void setup() {
+        configuration = new Configuration();
+    }
+
     @Test
-    public void testParsingCommandLineArguments() {
+    public void testDefaultOptions() {
 
-        String[] args = { "-f", "hello.txt", "-v", "--version" };
-        Configuration c = new Configuration();
-        c.processArguments(args);
+        assertFalse(configuration.isDebuggingEnabled());
+        assertFalse(configuration.isWarningsEnabled());
+        assertFalse(configuration.isVerbose());
+        assertFalse(configuration.shouldShowVersion());
 
-        assertEquals("hello.txt", c.getFileName());
-        assertFalse(c.isDebuggingEnabled());
-        assertFalse(c.isWarningsEnabled());
-        assertTrue(c.isVerbose());
-        assertTrue(c.shouldShowVersion());
+    }
 
-        c = new Configuration();
-        try {
-            c.processArguments(new String[] { "-f" });
-            fail("Should have failed");
-        } catch (InvalidArgumentException e) {
-            //expected
-        }
+    @Test
+    public void testExplicitOptions() {
 
+        String[] args = {"-f", "hello.txt", "-v", "-d", "-w", "--version"};
+        configuration.processArguments(args);
+
+        assertEquals("hello.txt", configuration.getFileName());
+        assertTrue(configuration.isDebuggingEnabled());
+        assertTrue(configuration.isWarningsEnabled());
+        assertTrue(configuration.isVerbose());
+        assertTrue(configuration.shouldShowVersion());
+
+    }
+
+    @Test(expected = InvalidArgumentException.class)
+    public void testConfigurationErrors() {
+
+        String[] args = {"-f"};
+
+        configuration.processArguments(args);
 
     }
 }
