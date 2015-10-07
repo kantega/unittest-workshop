@@ -38,7 +38,12 @@ public class ApplicantRepository {
             applicant.setId(rs.getLong("ID"));
             applicant.setSsn(rs.getString("SSN"));
             applicant.setEducation(Applicant.Education.valueOf(rs.getString("EDUCATION")));
-            applicant.setEmployedSince(rs.getInt("EMPLOYED_SINCE"));
+
+            Integer employedSince = rs.getInt("EMPLOYED_SINCE");
+            if (!rs.wasNull()) {
+                applicant.setEmployedSince(employedSince);
+            }
+
             return applicant;
         });
         if (result.size() == 0) {

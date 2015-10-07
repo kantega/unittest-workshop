@@ -48,7 +48,15 @@ public class ApplicantRepositoryTest {
         Applicant found = repository.find(existing.getId());
 
         //Then
-        assertNotNull(found);
+        assertEqualProperties(existing, found);
     }
+
+    private void assertEqualProperties(Applicant expected, Applicant actual) {
+        assertEquals(expected.getId(), actual.getId());
+        assertEquals(expected.getSsn(), actual.getSsn());
+        assertEquals(expected.getEducation(), actual.getEducation());
+        assertEquals(expected.getEmployedSince(), actual.getEmployedSince());
+    }
+
 
 }
