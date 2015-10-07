@@ -11,7 +11,7 @@ CommentView.prototype.showComments = function (comments) {
         var li = $('<li/>');
         li.appendTo(ul);
         $('<p/>').html(comment.text).appendTo(li);
-        $('<small/>').html('Posted ' + this.dateUtil.durationAsText(new Date(comment.timestamp)) + ' by ' + comment.by).appendTo(li);
+        $('<span class="commentFooter"/>').html('Posted ' + this.dateUtil.durationAsText(new Date(comment.timestamp)) + ' by ' + comment.by).appendTo(li);
     }
     this.container.html(ul);
 };

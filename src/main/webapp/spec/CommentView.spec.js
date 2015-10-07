@@ -70,8 +70,8 @@ describe("commentView", function() {
         //when
         commentView.showComments([ comment ]);
 
-        expect(container.find('small').text()).toMatch(comment.by);
-        expect(container.find('small').text()).toMatch("1 day ago");
+        expect(container.find('li:contains("someone")').size()).toBe(1);
+        expect(container.find('li:contains("1 day ago")').size()).toBe(1);
 
     });
 
